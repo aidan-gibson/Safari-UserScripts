@@ -1,28 +1,184 @@
 // ==UserScript==
 // @namespace   https://github.com/aidan-gibson
 // @name        Auto-Archive News
-// @description Automatically fetch archive.ph versions of news sites
-// @version     1.0
+// @description Automatically fetch archive.ph versions of news sites. If not yet archived it auto-archives.
+// @version     1.0.0
 // @author      aidan-gibson
-// @include     https://www.theatlantic.com/*
-// @include     http://www.theatlantic.com/*
-// @updateURL
-// @downloadURL
+// @include     /^(http|https):\/\/www.outbrain.com\/.*/
+// @include     /^(http|https):\/\/www.piano.io\/.*/
+// @include     /^(http|https):\/\/www.poool.fr\/.*/
+// @include     /^(http|https):\/\/www.qiota.com\/.*/
+// @include     /^(http|https):\/\/www.tinypass.com\/.*/
+// @include     /^(http|https):\/\/www.ad.nl\/.*/
+// @include     /^(http|https):\/\/www.adelaidenow.com.au\/.*/
+// @include     /^(http|https):\/\/www.adweek.com\/.*/
+// @include     /^(http|https):\/\/www.afr.com\/.*/
+// @include     /^(http|https):\/\/www.baltimoresun.com\/.*/
+// @include     /^(http|https):\/\/www.barrons.com\/.*/
+// @include     /^(http|https):\/\/www.bizjournals.com\/.*/
+// @include     /^(http|https):\/\/www.bloomberg.com\/.*/
+// @include     /^(http|https):\/\/www.bloombergquint.com\/.*/
+// @include     /^(http|https):\/\/www.bostonglobe.com\/.*/
+// @include     /^(http|https):\/\/www.brisbanetimes.com.au\/.*/
+// @include     /^(http|https):\/\/www.britannica.com\/.*/
+// @include     /^(http|https):\/\/www.businessinsider.com\/.*/
+// @include     /^(http|https):\/\/www.caixinglobal.com\/.*/
+// @include     /^(http|https):\/\/www.cen.acs.org\/.*/
+// @include     /^(http|https):\/\/www.centralwesterndaily.com.au\/.*/
+// @include     /^(http|https):\/\/www.chicagobusiness.com\/.*/
+// @include     /^(http|https):\/\/www.chicagotribune.com\/.*/
+// @include     /^(http|https):\/\/www.corriere.it\/.*/
+// @include     /^(http|https):\/\/www.courant.com\/.*/
+// @include     /^(http|https):\/\/www.couriermail.com.au\/.*/
+// @include     /^(http|https):\/\/www.dailypress.com\/.*/
+// @include     /^(http|https):\/\/www.dailytelegraph.com.au\/.*/
+// @include     /^(http|https):\/\/www.delfi.ee\/.*/
+// @include     /^(http|https):\/\/www.demorgen.be\/.*/
+// @include     /^(http|https):\/\/www.denverpost.com\/.*/
+// @include     /^(http|https):\/\/www.dynamed.com\/.*/
+// @include     /^(http|https):\/\/www.economist.com\/.*/
+// @include     /^(http|https):\/\/www.ed.nl\/.*/
+// @include     /^(http|https):\/\/www.elmercurio.com\/.*/
+// @include     /^(http|https):\/\/www.elu24.ee\/.*/
+// @include     /^(http|https):\/\/www.examiner.com.au\/.*/
+// @include     /^(http|https):\/\/www.fd.nl\/.*/
+// @include     /^(http|https):\/\/www.fnlondon.com\/.*/
+// @include     /^(http|https):\/\/www.foreignpolicy.com\/.*/
+// @include     /^(http|https):\/\/www.fortune.com\/.*/
+// @include     /^(http|https):\/\/www.ft.com\/.*/
+// @include     /^(http|https):\/\/www.genomeweb.com\/.*/
+// @include     /^(http|https):\/\/www.gelocal.it\/.*/
+// @include     /^(http|https):\/\/www.glassdoor.com\/.*/
+// @include     /^(http|https):\/\/www.globes.co.il\/.*/
+// @include     /^(http|https):\/\/www.groene.nl\/.*/
+// @include     /^(http|https):\/\/www.haaretz.co.il\/.*/
+// @include     /^(http|https):\/\/www.haaretz.com\/.*/
+// @include     /^(http|https):\/\/www.harpers.org\/.*/
+// @include     /^(http|https):\/\/www.hbr.org\/.*/
+// @include     /^(http|https):\/\/www.heraldsun.com.au\/.*/
+// @include     /^(http|https):\/\/www.ilmanifesto.it\/.*/
+// @include     /^(http|https):\/\/www.inc.com\/.*/
+// @include     /^(http|https):\/\/www.inquirer.com\/.*/
+// @include     /^(http|https):\/\/www.interest.co.nz\/.*/
+// @include     /^(http|https):\/\/www.investorschronicle.co.uk\/.*/
+// @include     /^(http|https):\/\/www.irishtimes.com\/.*/
+// @include     /^(http|https):\/\/www.journalnow.com\/.*/
+// @include     /^(http|https):\/\/www.kansascity.com\/.*/
+// @include     /^(http|https):\/\/www.labusinessjournal.com\/.*/
+// @include     /^(http|https):\/\/www.lanacion.com.ar\/.*/
+// @include     /^(http|https):\/\/www.lastampa.it\/.*/
+// @include     /^(http|https):\/\/www.latercera.com\/.*/
+// @include     /^(http|https):\/\/www.latimes.com\/.*/
+// @include     /^(http|https):\/\/www.lavoixdunord.fr\/.*/
+// @include     /^(http|https):\/\/www.lecho.be\/.*/
+// @include     /^(http|https):\/\/www.leparisien.fr\/.*/
+// @include     /^(http|https):\/\/www.lesechos.fr\/.*/
+// @include     /^(http|https):\/\/www.loebclassics.com\/.*/
+// @include     /^(http|https):\/\/www.lrb.co.uk\/.*/
+// @include     /^(http|https):\/\/www.mcall.com\/.*/
+// @include     /^(http|https):\/\/www.medium.com\/.*/
+// @include     /^(http|https):\/\/www.medscape.com\/.*/
+// @include     /^(http|https):\/\/www.mercurynews.com\/.*/
+// @include     /^(http|https):\/\/www.mv-voice.com\/.*/
+// @include     /^(http|https):\/\/www.nationalgeographic.c\/.*/
+// @include     /^(http|https):\/\/www.nationalpost.com\/.*/
+// @include     /^(http|https):\/\/www.news-gazette.com\/.*/
+// @include     /^(http|https):\/\/www.newstatesman.com\/.*/
+// @include     /^(http|https):\/\/www.newyorker.com\/.*/
+// @include     /^(http|https):\/\/www.nrc.nl\/.*/
+// @include     /^(http|https):\/\/www.ntnews.com.au\/.*/
+// @include     /^(http|https):\/\/www.nydailynews.com\/.*/
+// @include     /^(http|https):\/\/www.nymag.com\/.*/
+// @include     /^(http|https):\/\/www.nytimes.com\/.*/
+// @include     /^(http|https):\/\/www.nzherald.co.nz\/.*/
+// @include     /^(http|https):\/\/www.ocregister.com\/.*/
+// @include     /^(http|https):\/\/www.orlandosentinel.com\/.*/
+// @include     /^(http|https):\/\/www.paloaltoonline.com\/.*/
+// @include     /^(http|https):\/\/www.parool.nl\/.*/
+// @include     /^(http|https):\/\/www.postimees.ee\/.*/
+// @include     /^(http|https):\/\/www.quora.com\/.*/
+// @include     /^(http|https):\/\/www.qz.com\/.*/
+// @include     /^(http|https):\/\/www.repubblica.it\/.*/
+// @include     /^(http|https):\/\/www.sandiegouniontribune.com\/.*/
+// @include     /^(http|https):\/\/www.scientificamerican.com\/.*/
+// @include     /^(http|https):\/\/www.seattletimes.com\/.*/
+// @include     /^(http|https):\/\/www.seekingalpha.com\/.*/
+// @include     /^(http|https):\/\/www.slate.com\/.*/
+// @include     /^(http|https):\/\/www.smh.com.au\/.*/
+// @include     /^(http|https):\/\/www.sofrep.com\/.*/
+// @include     /^(http|https):\/\/www.spectator.co.uk\/.*/
+// @include     /^(http|https):\/\/www.spectator.com.au\/.*/
+// @include     /^(http|https):\/\/www.speld.n\/.*/
+// @include     /^(http|https):\/\/www.statista.com\/.*/
+// @include     /^(http|https):\/\/www.stuff.co.nz\/.*/
+// @include     /^(http|https):\/\/www.sun-sentinel.com\/.*/
+// @include     /^(http|https):\/\/www.techinasia.com\/.*/
+// @include     /^(http|https):\/\/www.technologyreview.com\/.*/
+// @include     /^(http|https):\/\/www.telegraaf.nl\/.*/
+// @include     /^(http|https):\/\/www.telegraph.co.uk\/.*/
+// @include     /^(http|https):\/\/www.the-tls.co.uk\/.*/
+// @include     /^(http|https):\/\/www.theadvocate.com.au\/.*/
+// @include     /^(http|https):\/\/www.theage.com.au\/.*/
+// @include     /^(http|https):\/\/www.theatlantic.com\/.*/
+// @include     /^(http|https):\/\/www.theaustralian.com.au\/.*/
+// @include     /^(http|https):\/\/www.thediplomat.com\/.*/
+// @include     /^(http|https):\/\/www.theglobeandmail.com\/.*/
+// @include     /^(http|https):\/\/www.theherald.com.au\/.*/
+// @include     /^(http|https):\/\/www.thehindu.com\/.*/
+// @include     /^(http|https):\/\/www.themarker.com\/.*/
+// @include     /^(http|https):\/\/www.themercury.com.au\/.*/
+// @include     /^(http|https):\/\/www.thenation.com\/.*/
+// @include     /^(http|https):\/\/www.thenational.scot\/.*/
+// @include     /^(http|https):\/\/www.theolivepress.es\/.*/
+// @include     /^(http|https):\/\/www.thesaturdaypaper.com.au\/.*/
+// @include     /^(http|https):\/\/www.thestar.com\/.*/
+// @include     /^(http|https):\/\/www.thewrap.com\/.*/
+// @include     /^(http|https):\/\/www.tijd.be\/.*/
+// @include     /^(http|https):\/\/www.towardsdatascience.com\/.*/
+// @include     /^(http|https):\/\/www.trouw.nl\/.*/
+// @include     /^(http|https):\/\/www.vanityfair.com\/.*/
+// @include     /^(http|https):\/\/www.vn.nl\/.*/
+// @include     /^(http|https):\/\/www.volkskrant.nl\/.*/
+// @include     /^(http|https):\/\/www.washingtonpost.com\/.*/
+// @include     /^(http|https):\/\/www.wired.com\/.*/
+// @include     /^(http|https):\/\/www.worldpoliticsreview.com\/.*/
+// @include     /^(http|https):\/\/www.wsj.com\/.*/
+// @include     /^(http|https):\/\/www.nzz.ch\/.*/
+// @include     /^(http|https):\/\/www.republic.ru\/.*/
+// @include     /^(http|https):\/\/www.historyextra.com\/.*/
+// @include     /^(http|https):\/\/www.netdna-ssl.com\/.*/
+// @include     /^(http|https):\/\/www.startribune.com\/.*/
+// @include     /^(http|https):\/\/www.df.cl\/.*/
+// @include     /^(http|https):\/\/www.financialpost.com\/.*/
+// @include     /^(http|https):\/\/www.gelderlander.nl\/.*/
+// @include     /^(http|https):\/\/www.bndestem.nl\/.*/
+// @include     /^(http|https):\/\/www.bd.nl\/.*/
+// @include     /^(http|https):\/\/www.tubantia.nl\/.*/
+// @include     /^(http|https):\/\/www.pzc.nl\/.*/
+// @include     /^(http|https):\/\/www.destentor.nl\/.*/
+// @include     /^(http|https):\/\/www.ambito\/.*/
+// @include     /^(http|https):\/\/www.sueddeutsche.de\/.*/
+// @include     /^(http|https):\/\/www.spectator.us\/.*/
+// @include     /^(http|https):\/\/www.humo.be\/.*/
+// @include     /^(http|https):\/\/www.elmundo.es\/.*/
+// @include     /^(http|https):\/\/www.time.com\/.*/
+// @include     /^(http|https):\/\/www.zeit.de\/.*/
+// @include     /^(http|https):\/\/www.ampproject.org\/.*/
+// @include     /^(http|https):\/\/www.reuters.com\/.*/
+// @include     /^(http|https):\/\/www.expansion.com\/.*/
+// @include     /^(http|https):\/\/www.theathletic.com\/.*/
+// @include     /^(http|https):\/\/www.theathletic.co.uk\/.*/
+// @include     /^(http|https):\/\/www.hbrchina.org\/.*/
+// @updateURL https://github.com/aidan-gibson/Safari-UserScripts/blob/master/archiveph.js
+// @downloadURL https://github.com/aidan-gibson/Safari-UserScripts/blob/master/archiveph.js
 // ==/UserScript==
 
-// grab from archive.is or archive.ph (one or other could be down. default prefer .ph)
-// if doesn't already exist, archive it
-// auto run on certain sites
-// safari should already b configured to automatically enable reader mode for both archive.is or archive.ph
+// the included regex ensures it doesn't run on homepages of news sites; it can't be theatlantic.com/, there must be SOMETHING after the last slash
 
-var title = document.title;
-var loc = window.location.href;
+// Instructions:
+// Must allow popups from iOS settings
+// Enable Safari reader mode for archive.is and archive.ph automatically
+// Using "Userscripts" app for iOS and iPadOS
 
-if (title == "Access Blocked") {
-  window.open("http://web.archive.org/save/" + loc, "_blank");
-  window.open("http://archive.is/?run=1&url=" + loc, "_blank");
-}
-
-//http://web.archive.org/save/URL
-
-//http://archive.is/?run=1&url=
+const loc = window.location.href;
+window.open("http://archive.is/?run=1&url=" + loc);
